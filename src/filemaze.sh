@@ -1,3 +1,5 @@
+#!/bin/bash
+
 default_depth=16
 
 if [ -z $1 ]
@@ -28,9 +30,9 @@ case $1 in
             esac
         done
  
-        if [ -z $depth ]
+        if [ -z "$depth" ]
         then
-            read -p "enter depth [$default_depth]:" depth
+            read -rp "enter depth [$default_depth]:" depth
             depth=${depth:-$default_depth}
         fi
 
