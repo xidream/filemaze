@@ -3,18 +3,23 @@
 default_depth=16
 max_depth=30
 
-is_valid_depth() {
-    if [[ ! $1 =~ ^[1-9]+[0-9]*$ ]]; then
-        echo "invalid depth: $1 (not positive integer)"
-        false
-        return
+main() {
+    if [ -z "$1" ]; then
+        echo "missing command"
+        exit 1
     fi
-    depth=$(($1))
-    if [ $depth -gt $max_depth ]; then
-        echo "invalid depth: $1 (max depth: $max_depth)"
-        false
-        return
-    fi
+
+    case $1 in
+    init)
+        init "$@"
+        ;;
+    *)
+        echo "unknown command: $1"
+        exit 1
+        ;;
+    esac
+
+    echo "depth: $depth"
 }
 
 init() {
@@ -37,23 +42,18 @@ init() {
     depth=${depth:-$default_depth}
 }
 
-main() {
-    if [ -z "$1" ]; then
-        echo "missing command"
-        exit 1
+is_valid_depth() {
+    if [[ ! $1 =~ ^[1-9]+[0-9]*$ ]]; then
+        echo "invalid depth: $1 (not positive integer)"
+        false
+        return
     fi
-
-    case $1 in
-    init)
-        init "$@"
-        ;;
-    *)
-        echo "unknown command: $1"
-        exit 1
-        ;;
-    esac
-
-    echo "depth: $depth"
+    depth=$(($1))
+    if [ $depth -gt $max_depth ]; then
+        echo "invalid depth: $1 (max depth: $max_depth)"
+        false
+        return
+    fi
 }
 
 main "$@"
