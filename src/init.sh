@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR=$(dirname "${BASH_SOURCE[0]}")
-. "$DIR/variables.sh"
+. "$DIR/share/variables.sh"
 
 init() {
     while [ $# -gt 0 ]; do

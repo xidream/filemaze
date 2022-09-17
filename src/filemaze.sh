@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SRC_DIR=$(dirname "${BASH_SOURCE[0]}")
-. "$SRC_DIR/share/functions.sh"
+. "$SRC_DIR/init.sh"
 
 main() {
     if [ -z "$1" ]; then

@@ -24,7 +24,7 @@ setup() {
 }
 
 @test "validate_depth" {
-    . "$SRC_DIR/share/functions.sh"
+    . "$SRC_DIR/init.sh"
 
     for depth in "${VALID_DEPTHS[@]}"; do
         run validate_depth $depth
