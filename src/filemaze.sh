@@ -1,7 +1,6 @@
 #!/bin/bash
 
 SRC_DIR=$(dirname "${BASH_SOURCE[0]}")
-. "$SRC_DIR/share/variables.sh"
 . "$SRC_DIR/share/functions.sh"
 
 main() {
