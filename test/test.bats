@@ -17,23 +17,50 @@ setup() {
     assert_output "missing command"
 }
 
-@test "unknown command" {
+@test "invalid command" {
     run filemaze.sh abc
     assert_failure
-    assert_output "unknown command: abc"
+    assert_output "invalid command: abc"
 }
 
-@test "validate_depth" {
-    . "$SRC_DIR/init.sh"
+@test "get_depth()" {
+    . init.sh
 
     for depth in "${VALID_DEPTHS[@]}"; do
-        run validate_depth $depth
+        run get_depth $depth
         assert_success
     done
 
     for depth in "${!INVALID_DEPTH_CASES[@]}"; do
-        run validate_depth $depth
+        run get_depth $depth
         assert_failure
         assert_output "${INVALID_DEPTH_CASESS[$depth]}"
     done
+}
+
+@test "get_maze_dir()" {
+    . init.sh
+
+    local test_dir="path/does/not/exist"
+
+    PARENTS=true
+    run get_maze_dir $test_dir
+    assert_success
+
+    PARENTS=false
+    run get_maze_dir $test_dir
+    assert_failure
+    assert_output "invalid directory: path/does/not/exist (does not exist)"
+
+    mkdir -p $test_dir
+
+    PARENTS=true
+    run get_maze_dir $test_dir
+    assert_success
+
+    PARENTS=false
+    run get_maze_dir $test_dir
+    assert_success
+
+    rmdir -p $test_dir
 }

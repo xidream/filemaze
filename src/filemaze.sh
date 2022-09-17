@@ -15,12 +15,10 @@ main() {
         init "$@"
         ;;
     *)
-        echo "unknown command: $1"
+        echo "invalid command: $1"
         exit 1
         ;;
     esac
-
-    echo "depth: $DEPTH"
 }
 
 main "$@"
