@@ -17,7 +17,7 @@ init() {
             ;;
         esac
     done
-    DEPTH=${DEPTH:-DEFAULT_DEPTH}
+    DEPTH=${DEPTH:-$DEFAULT_DEPTH}
 }
 
 validate_depth() {

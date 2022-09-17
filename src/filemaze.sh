@@ -1,7 +1,8 @@
 #!/bin/bash
 
-DIR=$(dirname "${BASH_SOURCE[0]}")
-. "$DIR/share/variables.sh"
+SRC_DIR=$(dirname "${BASH_SOURCE[0]}")
+. "$SRC_DIR/share/variables.sh"
+. "$SRC_DIR/share/functions.sh"
 
 main() {
     if [ -z "$1" ]; then
